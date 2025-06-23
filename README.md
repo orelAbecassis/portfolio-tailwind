@@ -31,15 +31,17 @@ npx tailwindcss init -p
 ### 4. Assure-toi que ces fichiers sont bien configurés :
 🔸 tailwind.config.js
 
+```js
 export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     extend: {},
   },
   plugins: [],
-}
-🔸 postcss.config.js
+} 
 
+🔸 postcss.config.js
+```js
 export default {
   plugins: {
     tailwindcss: {},
@@ -47,7 +49,6 @@ export default {
   },
 }
 🔸 src/style.css. Attention ne rien rajouter dans ce doc !!
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
