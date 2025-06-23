@@ -29,7 +29,8 @@ npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
 
 ### 4. Assure-toi que ces fichiers sont bien configurés :
-🔸 tailwind.config.js
+
+#### 🔸 `tailwind.config.js`
 
 ```js
 export default {
@@ -38,9 +39,11 @@ export default {
     extend: {},
   },
   plugins: [],
-} 
+}
+```
 
-🔸 postcss.config.js
+#### 🔸 `postcss.config.js`
+
 ```js
 export default {
   plugins: {
@@ -48,18 +51,21 @@ export default {
     autoprefixer: {},
   },
 }
-🔸 src/style.css. Attention ne rien rajouter dans ce doc !!
+```
+
+#### 🔸 `src/style.css` (⚠️ ne rien ajouter dans ce fichier)
+
+```css
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+```
 
-🔸 src/main.ts
+#### 🔸 `src/main.ts`
 
+```ts
 import './style.css'
-
-### 5. Lance le serveur de développement
-npm run dev
-👉 Accède à http://localhost:5173 dans ton navigateur
+```
 
 
 
