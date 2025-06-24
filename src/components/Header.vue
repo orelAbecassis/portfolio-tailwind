@@ -1,5 +1,5 @@
 <script setup>
-import logoAbweb from '../Images/logo-abweb-texte-noir.png'
+import logoAbweb from '../Images/logo-abweb.jpeg'
 </script>
 
 <template>
