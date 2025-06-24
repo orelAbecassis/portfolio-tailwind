@@ -1,0 +1,33 @@
+import { createRouter, createWebHistory } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
+import Projects from '../view/Projects.vue'
+import Contact from '../view/Contact.vue'
+import About from '../view/About.vue'
+
+
+const routes: RouteRecordRaw[] = [
+  {
+    path: '/projects',
+    name: 'Projects',
+    component: Projects
+  },
+  {
+    path: '/contact',
+    name: 'Contact',
+    component: Contact
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About
+  },
+  
+]
+
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes
+})
+
+export default router
+
