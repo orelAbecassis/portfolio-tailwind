@@ -3,6 +3,7 @@ import type { RouteRecordRaw } from 'vue-router'
 import Projects from '../view/Projects.vue'
 import Contact from '../view/Contact.vue'
 import About from '../view/About.vue'
+import Home from '../view/Home.vue'
 
 
 const routes: RouteRecordRaw[] = [
@@ -21,6 +22,11 @@ const routes: RouteRecordRaw[] = [
     name: 'About',
     component: About
   },
+  {
+    path: '/',
+    name: 'Home',
+    component: Home
+  }
   
 ]
 
