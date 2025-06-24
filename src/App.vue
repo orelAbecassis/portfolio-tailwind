@@ -1,5 +1,6 @@
 <template>
   <Header />
+  <Home />
   <main class="min-h-screen bg-gradient-to-br from-purple-100 via-white to-pink-100 text-gray-800">
     <!-- Contenu test -->
     <section class="py-24 text-center" id="projects">
@@ -21,4 +22,5 @@
 
 <script setup>
 import Header from './components/Header.vue'
+import Home from './view/Home.vue';
 </script>

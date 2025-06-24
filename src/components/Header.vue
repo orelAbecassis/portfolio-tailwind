@@ -1,9 +1,17 @@
+<script setup>
+import logoAbweb from '../Images/logo-abweb.jpeg'
+</script>
+
 <template>
   <header class="bg-white shadow-md sticky top-0 z-50">
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
       <!-- Logo -->
-      <div class="text-2xl font-extrabold text-purple-700 tracking-wide">
-        MonPortfolio
+      <div class="flex items-center h-full">
+        <img
+          :src="logoAbweb"
+          alt="Logo Abweb"
+          class="h-10 w-auto object-contain"
+        />
       </div>
 
       <!-- Navigation -->
