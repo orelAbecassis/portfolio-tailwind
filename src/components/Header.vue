@@ -16,7 +16,7 @@ import logoAbweb from '../Images/logo-abweb.jpeg'
 
       <!-- Navigation -->
       <div class="flex space-x-8">
-        <a href="#" class="nav-link">Accueil</a>
+        <a href="/" class="nav-link">Accueil</a>
         <a href="/projects" class="nav-link">Projets</a>
         <a href="/about" class="nav-link">À propos</a>
         <a href="/contact" class="nav-link">Contact</a>
