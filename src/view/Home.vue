@@ -6,7 +6,7 @@
       <img
         src="../Images/logo_ABEWEB.png"
         alt="Logo Abweb"
-        class="absolute top-8 left-8 w-36 h-auto z-20"
+        class="absolute top-8 left-8 w-64 h-auto z-20"
       />
     </div>
     <!-- Colonne droite blanche (65%) -->
