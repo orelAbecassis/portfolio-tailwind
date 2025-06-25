@@ -4,7 +4,7 @@
     <div class="w-[35%] bg-gradient-to-br from-purple-600 to-purple-200 relative flex flex-col">
       <!-- Logo en haut à gauche -->
       <img
-        src="../Images/logoABEWEB-violet.png"
+        src="../Images/logo_ABEWEB.png"
         alt="Logo Abweb"
         class="absolute top-8 left-8 w-36 h-auto z-20"
       />
