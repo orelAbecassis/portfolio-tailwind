@@ -1,5 +1,5 @@
 <template>
-    <section class="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-purple-100 via-white to-pink-100 py-20 px-4">
+    <section class="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-purple-300 via-pink-200 to-indigo-100 py-20 px-4">
       <div 
         v-motion
         :initial="{ opacity: 0, y: 100 }"
