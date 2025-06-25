@@ -1,81 +1,51 @@
 <template>
-  <section class="relative flex flex-col items-center justify-center min-h-[80vh] w-full overflow-hidden bg-white">
-    <!-- Arc violet en SVG en fond -->
-    <svg class="absolute top-0 left-1/2 -translate-x-1/2 z-0" width="1800" height="500" viewBox="0 0 1800 500" fill="none" xmlns="http://www.w3.org/2000/svg" style="min-width:100vw;">
-      <path d="M0,500 Q900,-200 1800,500 L1800,0 L0,0 Z" fill="url(#arcGradient)"/>
-      <defs>
-        <linearGradient id="arcGradient" x1="0" y1="0" x2="1800" y2="0" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#a78bfa"/>
-          <stop offset="0.5" stop-color="#c4b5fd"/>
-          <stop offset="1" stop-color="#818cf8"/>
-        </linearGradient>
-      </defs>
-    </svg>
-    <!-- Badge animé -->
-    <div
-      v-motion
-      :initial="{ opacity: 0, y: 50 }"
-      :enter="{ opacity: 1, y: 0 }"
-      transition="ease-in-out duration-700"
-      class="relative z-10 mt-16 mb-8"
-    >
-      <span class="px-8 py-3 rounded-full border border-purple-300 bg-white/80 text-2xl font-bold tracking-wide shadow-md">HELLO! I AM OREL ABECASSIS</span>
+  <div class="relative min-h-screen flex">
+    <!-- Colonne gauche violette (35%) -->
+    <div class="w-[35%] bg-gradient-to-br from-purple-500 to-purple-400 relative flex flex-col">
+      <!-- Logo en haut à gauche -->
+      <img
+        src="../Images/logoABEWEB-violet.png"
+        alt="Logo Abweb"
+        class="absolute top-8 left-8 w-36 h-auto z-20"
+      />
     </div>
-    <!-- Animation des rôles animée -->
-    <div
-      v-motion
-      :initial="{ opacity: 0, y: 50 }"
-      :enter="{ opacity: 1, y: 0 }"
-      transition="ease-in-out duration-700 delay-200"
-      class="relative z-10 h-16 text-6xl font-black text-center leading-tight mb-12 min-h-[80px] flex items-center justify-center"
-    >
-      <span class="text-purple-700 underline underline-offset-4 decoration-4 decoration-purple-500">{{ displayedRole }}</span><span v-if="showCursor" class="text-purple-700">|</span>
+    <!-- Colonne droite blanche (65%) -->
+    <div class="w-[65%] bg-white relative flex flex-col justify-between">
+      <!-- Bloc principal à droite -->
+      <div class="flex flex-col justify-center h-full pl-[420px] pr-16">
+        <!-- Animation lettre par lettre -->
+        <div class="text-2xl text-purple-500 font-semibold mb-4 min-h-[40px] flex items-center">
+          <span>{{ displayedRole }}</span><span v-if="showCursor" class="text-purple-700">|</span>
+        </div>
+        <!-- Nom -->
+        <h1 class="text-8xl font-black text-gray-900 mb-6">Orel Abecassis</h1>
+        <!-- Texte descriptif -->
+        <p class="text-xl text-gray-500 mb-12 max-w-2xl">
+          Développeur web passionné par la création d'expériences numériques élégantes et performantes. Toujours prêt à relever de nouveaux défis et à apprendre de nouvelles technologies.
+        </p>
+      </div>
     </div>
-    <!-- Image centrée animée à l'arrivée -->
-    <div
-      v-motion
-      :initial="{ opacity: 0, y: 50, scale: 0.9 }"
-      :enter="{ opacity: 1, y: 0, scale: 1 }"
-      transition="ease-in-out duration-700 delay-400"
-      class="relative z-10 inline-block"
-    >
+    <!-- Photo ronde à cheval sur la séparation, centrée sur la coupure -->
+    <div class="absolute top-1/2 left-[35%] -translate-x-1/2 -translate-y-1/2 z-20">
       <img
         :src="photoOrel"
         alt="Orel Abecassis"
-        class="rounded-full shadow-xl w-[520px] h-[520px] object-cover border-8 border-purple-100 bg-white"
+        class="rounded-full border-8 border-white shadow-2xl w-[700px] h-[700px] object-cover"
       />
     </div>
-  </section>
-  <main class="min-h-screen bg-gradient-to-br from-purple-100 via-white to-pink-100 text-gray-800">
-    <!-- Contenu test -->
-    <section class="py-24 text-center" id="projects">
-      <h2 class="text-4xl font-bold text-purple-700 mb-4">Mes projets</h2>
-      <p>Contenu de la section projets...</p>
-    </section>
-
-    <section class="py-24 text-center bg-white" id="about">
-      <h2 class="text-4xl font-bold text-pink-600 mb-4">À propos</h2>
-      <p>Contenu de la section à propos...</p>
-    </section>
-
-    <section class="py-24 text-center" id="contact">
-      <h2 class="text-4xl font-bold text-indigo-600 mb-4">Contact</h2>
-      <p>Formulaire ou infos de contact...</p>
-    </section>
-  </main>
+  </div>
 </template>
 
 <script setup lang="ts">
-import photoOrel from '../Images/photo-orel.jpeg'
 import { ref, onMounted, onUnmounted } from 'vue'
-import { useMotion } from '@vueuse/motion'
+import photoOrel from '../Images/photo-orel.jpeg'
 
+const menuOpen = ref(false)
 const roles = [
-    'Développeur Full Stack',
-    'Chef de projet',
-    'Freelance Tech'
+  'Développeur Full Stack',
+  'Chef de projet',
+  'Freelance Tech'
 ]
-
 const currentIndex = ref(0)
 const displayedRole = ref('')
 const showCursor = ref(true)
@@ -119,9 +89,9 @@ onUnmounted(() => {
 
 <style scoped>
 .fade-enter-active, .fade-leave-active {
-    transition: opacity 0.6s ease;
+  transition: opacity 0.3s;
 }
 .fade-enter-from, .fade-leave-to {
-    opacity: 0;
+  opacity: 0;
 }
 </style>
