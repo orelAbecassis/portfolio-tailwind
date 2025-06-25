@@ -6,7 +6,7 @@
       </svg>
     </button>
     <transition name="fade">
-      <div v-if="menuOpen" class="absolute right-0 top-0 h-full w-[28rem] bg-purple-50 shadow-2xl py-8 px-6 border-l border-purple-100 flex flex-col">
+      <div v-if="menuOpen" class="absolute right-0 top-0 h-full w-[28rem] bg-gradient-to-br from-purple-100 to-purple-400 shadow-2xl py-8 px-6 border-l border-purple-100 flex flex-col">
         <!-- Photo + prénom -->
         <div class="flex items-center mb-8">
           <img src="../Images/photo-orel.jpeg" alt="Orel Abecassis" class="w-16 h-16 rounded-full object-cover border-2 border-white shadow mr-3" />
@@ -27,7 +27,7 @@
             Projets
           </router-link>
           <router-link to="/contact" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 hover:bg-purple-100 text-lg font-medium" @click.native="menuOpen = false">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
             Contact
           </router-link>
         </nav>

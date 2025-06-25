@@ -1,7 +1,7 @@
 <template>
   <div class="relative min-h-screen flex">
     <!-- Colonne gauche violette (35%) -->
-    <div class="w-[35%] bg-gradient-to-br from-purple-500 to-purple-400 relative flex flex-col">
+    <div class="w-[35%] bg-gradient-to-br from-purple-600 to-purple-200 relative flex flex-col">
       <!-- Logo en haut à gauche -->
       <img
         src="../Images/logoABEWEB-violet.png"
