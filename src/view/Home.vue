@@ -23,11 +23,6 @@
         <p class="text-xl text-gray-500 mb-12 max-w-2xl">
           Développeur web passionné par la création d'expériences numériques élégantes et performantes. Toujours prêt à relever de nouveaux défis et à apprendre de nouvelles technologies.
         </p>
-        <!-- Boutons -->
-        <div class="flex gap-8">
-          <button class="px-10 py-4 border-2 border-purple-500 text-purple-600 text-lg font-semibold rounded-full hover:bg-purple-50 transition">Download CV</button>
-          <button class="px-10 py-4 bg-purple-500 text-white text-lg font-semibold rounded-full hover:bg-purple-600 transition">Contact</button>
-        </div>
       </div>
     </div>
     <!-- Photo ronde à cheval sur la séparation, centrée sur la coupure -->
