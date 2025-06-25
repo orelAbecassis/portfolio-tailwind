@@ -36,7 +36,12 @@
             </div>
   
             <!-- Informations de contact -->
-            <div class="flex flex-col justify-between bg-purple-50 p-8 rounded-xl border border-purple-200">
+            <div 
+              v-motion
+              :initial="{ opacity: 0, y: 40 }"
+              :enter="{ opacity: 1, y: 0, transition: { duration: 600, delay: 200 } }"
+              class="flex flex-col justify-between bg-purple-50 p-8 rounded-xl border border-purple-200 transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer"
+            >
               <div>
                 <h2 class="text-3xl font-bold text-pink-600 mb-6">Contact</h2>
                 <ul class="space-y-6 text-gray-700">
