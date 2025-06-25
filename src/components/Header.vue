@@ -1,21 +1,46 @@
 <script setup>
-import logoAbweb from '../Images/logo-abweb.jpeg'
+import logoAbweb from '../Images/logoABEWEB-violet.png'
+import { useWindowScroll } from '@vueuse/core'
+import { computed } from 'vue'
+
+const { y } = useWindowScroll()
+const isScrolled = computed(() => y.value > 50)
 </script>
 
 <template>
-  <header class="bg-purple-100 shadow-md sticky top-0 z-50">
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+  <header 
+    :class="[
+      'sticky top-0 z-50 transition-all duration-300',
+      isScrolled ? 'bg-purple-100/95 shadow-lg' : 'bg-purple-100 shadow-md'
+    ]"
+  >
+    <nav 
+      :class="[
+        'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center transition-all duration-300',
+        isScrolled ? 'h-20' : 'h-24'
+      ]"
+    >
       <!-- Logo -->
-      <div class="flex items-center h-full">
+      <div 
+        v-motion
+        :initial="{ opacity: 0, x: -100 }"
+        :enter="{ opacity: 1, x: 0, transition: { duration: 500 } }"
+        class="flex items-center h-full"
+      >
         <img
           :src="logoAbweb"
           alt="Logo Abweb"
-          class="h-14 w-auto object-contain"
+          :class="['w-auto object-contain transition-all duration-300', isScrolled ? 'h-16' : 'h-20']"
         />
       </div>
 
       <!-- Navigation -->
-      <div class="flex space-x-8">
+      <div 
+        v-motion
+        :initial="{ opacity: 0, x: 100 }"
+        :enter="{ opacity: 1, x: 0, transition: { duration: 500, delay: 200 } }"
+        class="flex space-x-8"
+      >
         <a href="/" class="nav-link">Accueil</a>
         <a href="/projects" class="nav-link">Projets</a>
         <a href="/about" class="nav-link">À propos</a>
