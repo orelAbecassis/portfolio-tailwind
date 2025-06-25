@@ -21,7 +21,12 @@ const isScrolled = computed(() => y.value > 50)
       ]"
     >
       <!-- Logo -->
-      <div class="flex items-center h-full">
+      <div 
+        v-motion
+        :initial="{ opacity: 0, x: -100 }"
+        :enter="{ opacity: 1, x: 0, transition: { duration: 500 } }"
+        class="flex items-center h-full"
+      >
         <img
           :src="logoAbweb"
           alt="Logo Abweb"
@@ -30,7 +35,12 @@ const isScrolled = computed(() => y.value > 50)
       </div>
 
       <!-- Navigation -->
-      <div class="flex space-x-8">
+      <div 
+        v-motion
+        :initial="{ opacity: 0, x: 100 }"
+        :enter="{ opacity: 1, x: 0, transition: { duration: 500, delay: 200 } }"
+        class="flex space-x-8"
+      >
         <a href="/" class="nav-link">Accueil</a>
         <a href="/projects" class="nav-link">Projets</a>
         <a href="/about" class="nav-link">À propos</a>
