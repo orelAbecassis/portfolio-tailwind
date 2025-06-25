@@ -27,6 +27,12 @@
                 Envoyer
               </button>
             </form>
+            <transition name="fade">
+              <div v-if="showSuccess" class="mt-8 flex items-center justify-between bg-green-100 border border-green-400 text-green-700 px-6 py-4 rounded-lg shadow animate-bounce-in">
+                <span>Merci pour votre message ! Je vous répondrai rapidement.</span>
+                <button @click="showSuccess = false" class="ml-4 text-green-700 hover:text-green-900 font-bold">&times;</button>
+              </div>
+            </transition>
           </div>
 
           <!-- Informations de contact -->
@@ -70,15 +76,36 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+
+const showSuccess = ref(false)
+let timeoutId: number | null = null
+
 const handleSubmit = () => {
-  // Logique de soumission du formulaire
-  // (ex: appel API, validation, etc.)
-  alert("Merci pour votre message !");
-};
+  showSuccess.value = true
+  if (timeoutId) clearTimeout(timeoutId)
+  timeoutId = window.setTimeout(() => {
+    showSuccess.value = false
+  }, 4000)
+}
 </script>
 
 <style scoped>
 .form-input {
   @apply w-full px-4 py-3 bg-white/50 border-2 border-purple-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none transition-all duration-300 placeholder-gray-500 text-gray-800;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+@keyframes bounce-in {
+  0% { transform: scale(0.9); opacity: 0; }
+  60% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+.animate-bounce-in {
+  animation: bounce-in 0.6s;
 }
 </style>
