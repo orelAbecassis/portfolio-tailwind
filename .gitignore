@@ -29,3 +29,4 @@ dist-ssr/
 
 # Cache de Vite
 .vite/
+.env
