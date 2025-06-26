@@ -1,6 +1,6 @@
 <template>
   <div class="fixed top-0 right-0 z-50 h-full w-[28rem]">
-    <button @click="menuOpen = !menuOpen" class="absolute top-8 right-8 focus:outline-none z-60">
+    <button v-if="!menuOpen" @click="menuOpen = true" class="absolute top-8 right-8 focus:outline-none z-60">
       <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
@@ -8,9 +8,16 @@
     <transition name="fade">
       <div v-if="menuOpen" class="absolute right-0 top-0 h-full w-[28rem] bg-gradient-to-br from-purple-100 to-purple-400 shadow-2xl py-8 px-6 border-l border-purple-100 flex flex-col">
         <!-- Photo + prénom -->
-        <div class="flex items-center mb-8">
-          <img src="../Images/photo-orel.jpeg" alt="Orel Abecassis" class="w-16 h-16 rounded-full object-cover border-2 border-white shadow mr-3" />
-          <span class="text-lg font-semibold text-purple-700">Orel Abecassis</span>
+        <div class="flex items-center mb-8 justify-between w-full">
+          <div class="flex items-center">
+            <img src="../Images/photo-orel.jpeg" alt="Orel Abecassis" class="w-16 h-16 rounded-full object-cover border-2 border-white shadow mr-3" />
+            <span class="text-lg font-semibold text-purple-700">Orel Abecassis</span>
+          </div>
+          <button @click="menuOpen = false" class="focus:outline-none">
+            <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
         </div>
         <!-- Liens -->
         <nav class="flex flex-col gap-4">
