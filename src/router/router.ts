@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
-import Projects from '../view/Projects.vue'
+import Projects from '../view/NotionProjects.vue'
 import Contact from '../view/Contact.vue'
 import About from '../view/About.vue'
 import Home from '../view/Home.vue'
