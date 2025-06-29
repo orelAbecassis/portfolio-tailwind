@@ -30,10 +30,50 @@
       <img
         :src="photoOrel"
         alt="Orel Abecassis"
-        class="rounded-full border-8 border-white shadow-2xl w-[700px] h-[700px] object-cover"
+        class="rounded-full border-8 border-white shadow-2xl w-[550px] h-[550px] object-cover"
       />
     </div>
   </div>
+  <!-- Section Projets -->
+  <section class="w-full flex flex-col items-center py-24 bg-white">
+    <h2 class="text-4xl font-bold text-purple-700 mb-12">Mes projets</h2>
+    <div class="w-full max-w-4xl flex flex-col gap-12">
+      <!-- Projet 1 : aligné à gauche -->
+      <div class="flex items-center bg-white/80 rounded-2xl shadow-lg p-8 border border-purple-100 self-start">
+        <!-- Image projet -->
+        <div class="flex-shrink-0">
+          <img src="../Images/logo-mel.png" alt="Logo Mel Marciano" class="w-32 h-32 rounded-full object-cover border-4 border-purple-200 bg-white shadow" />
+        </div>
+        <!-- Infos projet -->
+        <div class="flex-1 flex flex-col items-center justify-center ml-8">
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">Mel Marciano</h3>
+          <p class="text-gray-600 text-center mb-4">
+            Mel Marciano est un projet de nutritionniste proposant un e-book de recettes de salades fraîches et légères pour le Shabbat, alliant tradition et équilibre alimentaire.
+          </p>
+          <router-link to="/projects">
+            <button class="px-6 py-2 bg-purple-600 text-white rounded-full shadow hover:bg-purple-700 transition font-semibold text-base">Voir plus</button>
+          </router-link>
+        </div>
+      </div>
+      <!-- Projet 2 : centré -->
+      <div class="flex items-center bg-white/80 rounded-2xl shadow-lg p-8 border border-purple-100 mx-auto">
+        <!-- Image projet -->
+        <div class="flex-shrink-0">
+          <img src="../Images/" alt="Logo UDON" class="w-32 h-32 rounded-full object-cover border-4 border-purple-200 bg-white shadow" />
+        </div>
+        <!-- Infos projet -->
+        <div class="flex-1 flex flex-col items-center justify-center ml-8">
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">UDON</h3>
+          <p class="text-gray-600 text-center mb-4">
+            Création d'un bot reliant Notion et Discord pour une école.
+          </p>
+          <router-link to="/projects">
+            <button class="px-6 py-2 bg-purple-600 text-white rounded-full shadow hover:bg-purple-700 transition font-semibold text-base">Voir plus</button>
+          </router-link>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script setup lang="ts">
