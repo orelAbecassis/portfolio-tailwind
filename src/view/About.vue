@@ -176,7 +176,7 @@
             </div>
           </div>
           <h2 class="text-2xl font-semibold text-indigo-600 mb-4">Parcours</h2>
-          <ol class="relative border-l-2 border-purple-200 ml-4">
+          <ol class="relative border-l-2 border-blue-300 ml-4">
             <li class="mb-8 ml-6 p-4 rounded-lg transition-all duration-300 hover:bg-white/50 hover:scale-105 cursor-pointer">
               <span class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-purple-500 rounded-full ring-8 ring-white text-white">1</span>
               <h3 class="font-semibold text-lg text-purple-700">Master en Manager des solutions Digitals et Data (MSD2)</h3>
