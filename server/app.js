@@ -16,7 +16,7 @@ export default function(app, notion, databaseId) {
         return {
           id: entry.id,
           name: props["Name"]?.title?.[0]?.plain_text || "Sans titre",
-          image: props["Thumbnail"]?.files?.[0]?.file?.url || props["Thumbnail"]?.files?.[0]?.external?.url || "",
+          image: props["Page"]?.files?.[0]?.file?.url || props["Page"]?.files?.[0]?.external?.url || "",
           // Ajoute d'autres champs si besoin
         };
       });
@@ -24,6 +24,30 @@ export default function(app, notion, databaseId) {
     } catch (err) {
       console.error("Erreur lors de la communication avec Notion :", err);
       res.status(500).json({ error: "Erreur serveur lors de la récupération des projets" });
+    }
+  });
+
+  // Route pour un projet spécifique
+  app.get('/api/projects/:id', async (req, res) => {
+    const projectId = req.params.id;
+    try {
+      const { results: entries } = await notion.databases.query({ database_id: databaseId });
+      const entry = entries.find(e => e.id === projectId);
+      if (!entry) {
+        return res.status(404).json({ error: "Projet non trouvé" });
+      }
+      const props = entry.properties;
+      const project = {
+        id: entry.id,
+        name: props["Name"]?.title?.[0]?.plain_text || "Sans titre",
+        image: props["Page"]?.files?.[0]?.file?.url || props["Page"]?.files?.[0]?.external?.url || "",
+        description: props["Description"]?.rich_text?.[0]?.plain_text || "",
+        // Ajoute d'autres champs si besoin
+      };
+      res.json(project);
+    } catch (err) {
+      console.error("Erreur lors de la communication avec Notion :", err);
+      res.status(500).json({ error: "Erreur serveur lors de la récupération du projet" });
     }
   });
 }
