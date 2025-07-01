@@ -4,6 +4,8 @@ import { ref, onMounted } from 'vue'
 const projects = ref<{ id: string; name: string; image: string }[]>([])
 const isLoading = ref(true)
 const error = ref<string | null>(null)
+const selectedProject = ref<any | null>(null)
+const isModalOpen = ref(false)
 
 onMounted(async () => {
   try {
@@ -17,6 +19,14 @@ onMounted(async () => {
     isLoading.value = false
   }
 })
+
+const openModal = () => {
+  isModalOpen.value = true
+}
+const closeModal = () => {
+  isModalOpen.value = false
+  selectedProject.value = null
+}
 </script>
 
 <template>
@@ -34,6 +44,7 @@ onMounted(async () => {
           v-for="p in projects" 
           :key="p.id" 
           class="bg-white/70 rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl border-2 border-purple-200 hover:border-purple-400 cursor-pointer backdrop-blur-sm"
+          @click="openModal"
         >
           <img
             v-if="p.image"
@@ -49,10 +60,23 @@ onMounted(async () => {
           </div>
         </div>
       </div>
+      <!-- MODALE -->
+      <div v-if="isModalOpen" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" @click.self="closeModal">
+        <div class="relative bg-white rounded-xl shadow-2xl max-w-3xl w-full h-[500px] p-12 animate-fadeIn flex flex-col justify-center">
+          <button class="absolute top-6 right-6 text-4xl text-gray-400 hover:text-purple-600 font-bold" @click="closeModal">×</button>
+          <!-- Contenu vierge pour l'instant -->
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-/* Le style est géré par Tailwind, plus besoin de CSS personnalisé ici. */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease;
+}
 </style>
