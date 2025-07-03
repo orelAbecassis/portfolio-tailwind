@@ -19,6 +19,8 @@ export default function(app, notion, databaseId) {
           name: props["Name"]?.title?.[0]?.plain_text || "Sans titre",
           image: props["Page"]?.files?.[0]?.file?.url || props["Page"]?.files?.[0]?.external?.url || "",
           type: props["Tags"]?.multi_select?.[0]?.name || "",
+          tags: props["Tags"]?.multi_select?.map(t => t.name) || [],
+          url: props["URL"]?.url || "",
           // Ajoute d'autres champs si besoin
         };
       }).filter(project => !filterType || project.type === filterType);

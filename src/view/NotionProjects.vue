@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 
-const projetsPro = ref<{ id: string; name: string; image: string }[]>([])
-const projetsPerso = ref<{ id: string; name: string; image: string }[]>([])
+const projetsPro = ref<{ id: string; name: string; image: string; tags: string[]; url: string }[]>([])
+const projetsPerso = ref<{ id: string; name: string; image: string; tags: string[]; url: string }[]>([])
 const isLoading = ref(true)
 const error = ref<string | null>(null)
 const selectedProject = ref<any | null>(null)
@@ -23,7 +23,6 @@ onMounted(async () => {
 })
 
 const fetchProjectDetails = async (id: string) => {
-  isLoading.value = true;
   error.value = null;
   try {
     const res = await fetch(`http://localhost:3000/api/projects/${id}`)
@@ -33,8 +32,6 @@ const fetchProjectDetails = async (id: string) => {
     isModalOpen.value = true
   } catch (err: any) {
     error.value = err.message
-  } finally {
-    isLoading.value = false
   }
 }
 
@@ -60,11 +57,15 @@ const closeModal = () => {
       <div v-else>
         <h2 class="text-2xl font-bold text-purple-800 mb-6">Mes Projets Pro</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          <div 
-            v-for="p in projetsPro" 
-            :key="p.id" 
+          <component
+            v-for="p in projetsPro"
+            :is="p.tags && p.tags.includes('En Ligne') && p.url ? 'a' : 'div'"
+            :href="p.tags && p.tags.includes('En Ligne') && p.url ? p.url : undefined"
+            target="_blank"
+            rel="noopener"
+            :key="p.id"
             class="bg-white/70 rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl border-2 border-purple-200 hover:border-purple-400 cursor-pointer backdrop-blur-sm"
-            @click="fetchProjectDetails(p.id)"
+            @click="!p.tags || !p.tags.includes('En Ligne') || !p.url ? fetchProjectDetails(p.id) : null"
           >
             <img
               v-if="p.image"
@@ -78,15 +79,19 @@ const closeModal = () => {
             <div class="p-6">
               <h2 class="text-xl font-semibold text-purple-800 text-center">{{ p.name }}</h2>
             </div>
-          </div>
+          </component>
         </div>
         <h2 class="text-2xl font-bold text-purple-800 mb-6">Mes Projets Perso</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div 
-            v-for="p in projetsPerso" 
-            :key="p.id" 
+          <component
+            v-for="p in projetsPerso"
+            :is="p.tags && p.tags.includes('En Ligne') && p.url ? 'a' : 'div'"
+            :href="p.tags && p.tags.includes('En Ligne') && p.url ? p.url : undefined"
+            target="_blank"
+            rel="noopener"
+            :key="p.id"
             class="bg-white/70 rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl border-2 border-purple-200 hover:border-purple-400 cursor-pointer backdrop-blur-sm"
-            @click="fetchProjectDetails(p.id)"
+            @click="!p.tags || !p.tags.includes('En Ligne') || !p.url ? fetchProjectDetails(p.id) : null"
           >
             <img
               v-if="p.image"
@@ -100,7 +105,7 @@ const closeModal = () => {
             <div class="p-6">
               <h2 class="text-xl font-semibold text-purple-800 text-center">{{ p.name }}</h2>
             </div>
-          </div>
+          </component>
         </div>
       </div>
       <!-- MODALE -->
