@@ -100,17 +100,32 @@
     )
   })
   
-  const handleSubmit = () => {
-    showSuccess.value = true
-    if (timeoutId) clearTimeout(timeoutId)
-    timeoutId = window.setTimeout(() => {
-      showSuccess.value = false
-    }, 4000)
-    // Réinitialisation du formulaire
-    form.name = ''
-    form.email = ''
-    form.subject = ''
-    form.message = ''
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          subject: form.subject,
+          message: form.message
+        })
+      })
+      if (!response.ok) throw new Error('Erreur lors de l\'envoi du message')
+      showSuccess.value = true
+      if (timeoutId) clearTimeout(timeoutId)
+      timeoutId = window.setTimeout(() => {
+        showSuccess.value = false
+      }, 4000)
+      // Réinitialisation du formulaire
+      form.name = ''
+      form.email = ''
+      form.subject = ''
+      form.message = ''
+    } catch (err) {
+      alert('Erreur lors de l\'envoi du message. Merci de réessayer plus tard.')
+    }
   }
   </script>
   

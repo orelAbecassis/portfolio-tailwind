@@ -1,8 +1,10 @@
+import nodemailer from 'nodemailer';
+
 export default function(app, notion, databaseId) {
   app.get('/api/projects', async (req, res) => {
     console.log("Requête reçue sur /api/projects...");
     try {
-      const filterType = req.query.type; // Récupère le type à filtrer (pro/perso)
+      const filterType = req.query.type; // Récupère le type à filtrer (dev/community management)
       const { results: entries } = await notion.databases.query({ database_id: databaseId });
 
       console.log(`Nombre d'entrées reçues de Notion : ${entries.length}`);
@@ -18,9 +20,12 @@ export default function(app, notion, databaseId) {
           id: entry.id,
           name: props["Name"]?.title?.[0]?.plain_text || "Sans titre",
           image: props["Page"]?.files?.[0]?.file?.url || props["Page"]?.files?.[0]?.external?.url || "",
+          images: props["Page"]?.files?.map(f => f.file?.url || f.external?.url).filter(Boolean) || [],
           type: props["Tags"]?.multi_select?.[0]?.name || "",
           tags: props["Tags"]?.multi_select?.map(t => t.name) || [],
           url: props["URL"]?.url || "",
+          github: props["GitHub"]?.url || "",
+          description: props["Description"]?.rich_text?.[0]?.plain_text || "",
           // Ajoute d'autres champs si besoin
         };
       }).filter(project => !filterType || project.type === filterType);
@@ -53,6 +58,35 @@ export default function(app, notion, databaseId) {
     } catch (err) {
       console.error("Erreur lors de la communication avec Notion :", err);
       res.status(500).json({ error: "Erreur serveur lors de la récupération du projet" });
+    }
+  });
+
+  app.post('/api/contact', async (req, res) => {
+    const { name, email, subject, message } = req.body;
+    if (!name || !email || !subject || !message) {
+      return res.status(400).json({ error: 'Champs manquants' });
+    }
+    try {
+      // Configure le transporteur SMTP (exemple Gmail)
+      let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.MAIL_USER, // à définir dans .env
+          pass: process.env.MAIL_PASS  // à définir dans .env
+        }
+      });
+      // Prépare l'email
+      let mailOptions = {
+        from: email,
+        to: process.env.MAIL_USER, // ton adresse de réception
+        subject: `[Portfolio] ${subject}`,
+        text: `Message de ${name} <${email}> :\n\n${message}`
+      };
+      await transporter.sendMail(mailOptions);
+      res.status(200).json({ message: 'Message envoyé !' });
+    } catch (error) {
+      console.error('Erreur envoi mail:', error);
+      res.status(500).json({ error: 'Erreur lors de l\'envoi du message' });
     }
   });
 }
