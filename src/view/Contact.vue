@@ -51,11 +51,11 @@
                   </li>
                   <li class="flex items-center space-x-4">
                     <i class="fas fa-calendar-check text-purple-500 text-2xl w-8 text-center"></i>
-                    <a href="https://calendly.com/votre-lien" target="_blank" rel="noopener noreferrer" class="hover:text-purple-700 transition-colors">Prendre rendez-vous</a>
+                    <a>Prendre rendez-vous</a>
                   </li>
                   <li class="flex items-center space-x-4">
                     <i class="fas fa-map-marker-alt text-purple-500 text-2xl w-8 text-center"></i>
-                    <span>Paris, France</span>
+                    <span>Creteil, France</span>
                   </li>
                 </ul>
               </div>
@@ -68,9 +68,7 @@
                   <a href="https://github.com/orelAbecassis" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-purple-600 transition-colors text-3xl">
                     <i class="fab fa-github"></i>
                   </a>
-                  <a href="https://www.malt.fr/profile/votre-profil" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-purple-600 transition-colors text-3xl">
-                    <i class="fas fa-briefcase"></i>
-                  </a>
+                  
                 </div>
               </div>
             </div>

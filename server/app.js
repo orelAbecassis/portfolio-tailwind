@@ -1,7 +1,8 @@
 export default function(app, notion, databaseId) {
-  app.get('/api/projects', async (_, res) => {
+  app.get('/api/projects', async (req, res) => {
     console.log("Requête reçue sur /api/projects...");
     try {
+      const filterType = req.query.type; // Récupère le type à filtrer (pro/perso)
       const { results: entries } = await notion.databases.query({ database_id: databaseId });
 
       console.log(`Nombre d'entrées reçues de Notion : ${entries.length}`);
@@ -17,9 +18,12 @@ export default function(app, notion, databaseId) {
           id: entry.id,
           name: props["Name"]?.title?.[0]?.plain_text || "Sans titre",
           image: props["Page"]?.files?.[0]?.file?.url || props["Page"]?.files?.[0]?.external?.url || "",
+          type: props["Tags"]?.multi_select?.[0]?.name || "",
+          tags: props["Tags"]?.multi_select?.map(t => t.name) || [],
+          url: props["URL"]?.url || "",
           // Ajoute d'autres champs si besoin
         };
-      });
+      }).filter(project => !filterType || project.type === filterType);
       res.json(projects);
     } catch (err) {
       console.error("Erreur lors de la communication avec Notion :", err);
@@ -42,6 +46,7 @@ export default function(app, notion, databaseId) {
         name: props["Name"]?.title?.[0]?.plain_text || "Sans titre",
         image: props["Page"]?.files?.[0]?.file?.url || props["Page"]?.files?.[0]?.external?.url || "",
         description: props["Description"]?.rich_text?.[0]?.plain_text || "",
+        type: props["Tags"]?.multi_select?.[0]?.name || "",
         // Ajoute d'autres champs si besoin
       };
       res.json(project);
