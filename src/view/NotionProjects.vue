@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 
-const projetsPro = ref<{ id: string; name: string; image: string; tags: string[]; url: string }[]>([])
-const projetsPerso = ref<{ id: string; name: string; image: string; tags: string[]; url: string }[]>([])
+const projetsDev = ref<{ id: string; name: string; image: string; tags: string[]; url: string }[]>([])
+const projetsCommunity = ref<{ id: string; name: string; image: string; tags: string[]; url: string }[]>([])
 const isLoading = ref(true)
 const error = ref<string | null>(null)
 const selectedProject = ref<any | null>(null)
@@ -13,8 +13,8 @@ onMounted(async () => {
     const res = await fetch('http://localhost:3000/api/projects')
     if (!res.ok) throw new Error('Erreur lors du chargement')
     const data = await res.json()
-    projetsPro.value = data.filter((p: any) => p.type === 'Pro')
-    projetsPerso.value = data.filter((p: any) => p.type === 'Perso')
+    projetsDev.value = data.filter((p: any) => p.type === 'Dev')
+    projetsCommunity.value = data.filter((p: any) => p.type === 'Community management')
   } catch (err: any) {
     error.value = err.message
   } finally {
@@ -55,10 +55,10 @@ const closeModal = () => {
         <p>Une erreur est survenue : {{ error }}</p>
       </div>
       <div v-else>
-        <h2 class="text-2xl font-bold text-purple-800 mb-6">Mes Projets Pro</h2>
+        <h2 class="text-2xl font-bold text-purple-800 mb-6">Mes Projets Développement</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           <component
-            v-for="p in projetsPro"
+            v-for="p in projetsDev"
             :is="p.tags && p.tags.includes('En Ligne') && p.url ? 'a' : 'div'"
             :href="p.tags && p.tags.includes('En Ligne') && p.url ? p.url : undefined"
             target="_blank"
@@ -81,10 +81,10 @@ const closeModal = () => {
             </div>
           </component>
         </div>
-        <h2 class="text-2xl font-bold text-purple-800 mb-6">Mes Projets Perso</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <h2 class="text-2xl font-bold text-purple-800 mb-6">Mes Projets Community Management</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           <component
-            v-for="p in projetsPerso"
+            v-for="p in projetsCommunity"
             :is="p.tags && p.tags.includes('En Ligne') && p.url ? 'a' : 'div'"
             :href="p.tags && p.tags.includes('En Ligne') && p.url ? p.url : undefined"
             target="_blank"
