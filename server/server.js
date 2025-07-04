@@ -6,6 +6,7 @@ import appRoutes from "./app.js";
 import 'dotenv/config';
 
 const app = express();
+app.use(express.json());
 app.use(cors()); 
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
