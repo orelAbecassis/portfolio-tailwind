@@ -46,14 +46,33 @@ export default function(app, notion, databaseId) {
         return res.status(404).json({ error: "Projet non trouvé" });
       }
       const props = entry.properties;
+      
+      // Fonction pour récupérer les images depuis différents champs possibles
+      const getImages = () => {
+        const possibleFields = ["Page", "Pages", "Images", "Gallery", "Photos"];
+        for (const field of possibleFields) {
+          if (props[field]?.files && props[field].files.length > 0) {
+            return props[field].files.map(f => f.file?.url || f.external?.url).filter(Boolean);
+          }
+        }
+        return [];
+      };
+      
+      const images = getImages();
+      
       const project = {
         id: entry.id,
         name: props["Name"]?.title?.[0]?.plain_text || "Sans titre",
-        image: props["Page"]?.files?.[0]?.file?.url || props["Page"]?.files?.[0]?.external?.url || "",
+        image: images[0] || "",
+        images: images,
         description: props["Description"]?.rich_text?.[0]?.plain_text || "",
         type: props["Tags"]?.multi_select?.[0]?.name || "",
+        tags: props["Tags"]?.multi_select?.map(t => t.name) || [],
+        url: props["URL"]?.url || "",
+        github: props["GitHub"]?.url || "",
         // Ajoute d'autres champs si besoin
       };
+      
       res.json(project);
     } catch (err) {
       console.error("Erreur lors de la communication avec Notion :", err);

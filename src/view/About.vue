@@ -85,12 +85,12 @@
                 </div>
                 <!-- Microsoft 365 -->
                 <div class="flex flex-col items-center">
-                  <img src="../Images/logo_skills/Microsoft-365-Logo-PNG.jpg" alt="Microsoft 365" class="h-12 w-12 aspect-square object-contain bg-white rounded p-1 mx-auto shadow" />
+                  <img src="../Images/logo_skills/Microsoft.png" alt="Microsoft 365" class="h-12 w-12 aspect-square object-contain bg-white rounded p-1 mx-auto shadow" />
                   <span class="text-xs mt-1">Microsoft 365</span>
                 </div>
                 <!-- VirtualBox -->
                 <div class="flex flex-col items-center">
-                  <img src="../Images/logo_skills/Virtualbox.webp" alt="VirtualBox" class="h-12 w-12 aspect-square object-contain bg-white rounded p-1 mx-auto shadow" />
+                  <img src="../Images/logo_skills/Virtualbox.png" alt="VirtualBox" class="h-12 w-12 aspect-square object-contain bg-white rounded p-1 mx-auto shadow" />
                   <span class="text-xs mt-1">VirtualBox</span>
                 </div>
                 <!-- Grafana -->
@@ -169,7 +169,7 @@
                 </div>
                 <!-- Druid -->
                 <div class="flex flex-col items-center">
-                  <img src="../Images/logo_skills/druid-logo.png" alt="Druid" class="h-12 w-12 aspect-square object-contain bg-white rounded p-1 mx-auto shadow" />
+                  <img src="../Images/logo_skills/druid.png" alt="Druid" class="h-12 w-12 aspect-square object-contain bg-white rounded p-1 mx-auto shadow" />
                   <span class="text-xs mt-1">Druid</span>
                 </div>
               </div>
@@ -179,7 +179,7 @@
           <ol class="relative border-l-2 border-blue-300 ml-4">
             <li class="mb-8 ml-6 p-4 rounded-lg transition-all duration-300 hover:bg-white/50 hover:scale-105 cursor-pointer">
               <span class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-purple-500 rounded-full ring-8 ring-white text-white">1</span>
-              <h3 class="font-semibold text-lg text-purple-700">Master en Manager des solutions Digitals et Data (MSD2)</h3>
+              <h3 class="font-semibold text-lg text-purple-700">Master en Manager des Solutions Digitals et Data (MSD2)</h3>
               <div class="text-gray-600">Ort Montreuil Daniel Mayer - 3IL</div>
               <time class="block mb-1 text-sm font-normal leading-none text-gray-400">2023 - 2025</time>
             </li>
@@ -193,7 +193,7 @@
 
             <li class="mb-8 ml-6 p-4 rounded-lg transition-all duration-300 hover:bg-white/50 hover:scale-105 cursor-pointer">
               <span class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-indigo-500 rounded-full ring-8 ring-white text-white">3</span>
-              <h3 class="font-semibold text-lg text-purple-700">BTS Service Informatique aux Organisation (SIO) Option développement</h3>
+              <h3 class="font-semibold text-lg text-purple-700">BTS Service Informatique aux Organisation (SIO) Option SLAM</h3>
               <div class="text-gray-600">Ort Montreuil Daniel Mayer</div>
               <time class="block mb-1 text-sm font-normal leading-none text-gray-400">2020 - 2022</time>
             </li>
