@@ -7,6 +7,7 @@ const isLoading = ref(true)
 const error = ref<string | null>(null)
 const selectedProject = ref<any | null>(null)
 const isModalOpen = ref(false)
+const currentImageIndex = ref(0)
 
 onMounted(async () => {
   try {
@@ -29,7 +30,10 @@ const fetchProjectDetails = async (id: string) => {
     if (!res.ok) throw new Error('Erreur lors du chargement du projet')
     const data = await res.json()
     selectedProject.value = data
+    currentImageIndex.value = 0 // Réinitialiser l'index de l'image
     isModalOpen.value = true
+    // Ajouter l'écouteur de clavier quand la modale s'ouvre
+    document.addEventListener('keydown', handleKeydown)
   } catch (err: any) {
     error.value = err.message
   }
@@ -41,6 +45,64 @@ const openModal = () => {
 const closeModal = () => {
   isModalOpen.value = false
   selectedProject.value = null
+  currentImageIndex.value = 0
+  // Supprimer l'écouteur de clavier quand la modale se ferme
+  document.removeEventListener('keydown', handleKeydown)
+}
+
+// Fonctions de navigation des images
+const nextImage = () => {
+  if (selectedProject.value?.images && selectedProject.value.images.length > 0) {
+    currentImageIndex.value = (currentImageIndex.value + 1) % selectedProject.value.images.length
+  }
+}
+
+const previousImage = () => {
+  if (selectedProject.value?.images && selectedProject.value.images.length > 0) {
+    currentImageIndex.value = currentImageIndex.value === 0 
+      ? selectedProject.value.images.length - 1 
+      : currentImageIndex.value - 1
+  }
+}
+
+// Fonction pour obtenir l'image actuelle
+const getCurrentImage = () => {
+  // Si on a un tableau d'images, utiliser l'index
+  if (selectedProject.value?.images && selectedProject.value.images.length > 0) {
+    return selectedProject.value.images[currentImageIndex.value]
+  }
+  // Sinon, utiliser l'image unique
+  return selectedProject.value?.image || ''
+}
+
+// Fonction pour vérifier si le projet a plusieurs images
+const hasMultipleImages = () => {
+  return selectedProject.value?.images && selectedProject.value.images.length > 1
+}
+
+// Fonction pour obtenir le nombre total d'images
+const getTotalImages = () => {
+  return selectedProject.value?.images?.length || 0
+}
+
+// Gestion des touches du clavier
+const handleKeydown = (event: KeyboardEvent) => {
+  if (!isModalOpen.value) return
+  
+  switch (event.key) {
+    case 'ArrowLeft':
+      event.preventDefault()
+      previousImage()
+      break
+    case 'ArrowRight':
+      event.preventDefault()
+      nextImage()
+      break
+    case 'Escape':
+      event.preventDefault()
+      closeModal()
+      break
+  }
 }
 </script>
 
@@ -110,11 +172,58 @@ const closeModal = () => {
       </div>
       <!-- MODALE -->
       <div v-if="isModalOpen" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" @click.self="closeModal">
-        <div class="relative bg-white rounded-xl shadow-2xl max-w-3xl w-full h-[500px] p-12 animate-fadeIn flex flex-col justify-center">
-          <button class="absolute top-6 right-6 text-4xl text-gray-400 hover:text-purple-600 font-bold" @click="closeModal">×</button>
-          <div v-if="selectedProject">
+        <div class="relative bg-white rounded-xl shadow-2xl max-w-4xl w-full h-[600px] p-8 animate-fadeIn flex flex-col">
+          <button class="absolute top-4 right-4 text-3xl text-gray-400 hover:text-purple-600 font-bold z-10" @click="closeModal">×</button>
+          <div v-if="selectedProject" class="flex-1 flex flex-col">
             <h2 class="text-2xl font-bold text-purple-800 mb-4 text-center">{{ selectedProject.name }}</h2>
-            <img v-if="selectedProject.image" :src="selectedProject.image" :alt="selectedProject.name" class="mx-auto mb-6 max-h-48 rounded-lg shadow" />
+            
+            <!-- Galerie d'images avec navigation -->
+            <div class="relative flex-1 flex items-center justify-center mb-4">
+              <div v-if="getCurrentImage()" class="relative w-full h-full flex items-center justify-center">
+                <!-- Flèche précédente -->
+                <button 
+                  v-if="hasMultipleImages()"
+                  @click="previousImage"
+                  class="nav-arrow absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white hover:bg-gray-100 rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110 border-2 border-purple-200"
+                  style="min-width: 48px; min-height: 48px;"
+                >
+                  <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                  </svg>
+                </button>
+                
+                <!-- Image actuelle -->
+                <img 
+                  :src="getCurrentImage()" 
+                  :alt="selectedProject.name" 
+                  class="image-transition max-h-80 max-w-full object-contain rounded-lg shadow-lg"
+                />
+                
+                <!-- Flèche suivante -->
+                <button 
+                  v-if="hasMultipleImages()"
+                  @click="nextImage"
+                  class="nav-arrow absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white hover:bg-gray-100 rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110 border-2 border-purple-200"
+                  style="min-width: 48px; min-height: 48px;"
+                >
+                  <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </button>
+                
+                <!-- Indicateur de position -->
+                <div 
+                  v-if="hasMultipleImages()"
+                  class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded-full text-sm"
+                >
+                  {{ currentImageIndex + 1 }} / {{ getTotalImages() }}
+                </div>
+              </div>
+              <div v-else class="text-gray-400 text-center">Aucune image disponible</div>
+            </div>
+            
+            
+            <!-- Description -->
             <div v-if="selectedProject.description" class="text-gray-700 text-lg mb-4 text-center">{{ selectedProject.description }}</div>
             <div v-else class="text-gray-400 text-center">Aucune description disponible.</div>
           </div>
@@ -130,7 +239,45 @@ const closeModal = () => {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
 }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
 .animate-fadeIn {
   animation: fadeIn 0.2s ease;
+}
+
+.animate-slideIn {
+  animation: slideIn 0.3s ease;
+}
+
+/* Styles pour les flèches de navigation */
+.nav-arrow {
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nav-arrow:hover {
+  backdrop-filter: blur(15px);
+  border-color: rgba(147, 51, 234, 0.3);
+}
+
+/* Animation pour le changement d'image */
+.image-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Responsive pour mobile */
+@media (max-width: 640px) {
+  .nav-arrow {
+    padding: 0.5rem;
+  }
+  
+  .nav-arrow svg {
+    width: 1rem;
+    height: 1rem;
+  }
 }
 </style>
