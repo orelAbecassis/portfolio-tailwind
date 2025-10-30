@@ -115,7 +115,7 @@
                 </div>
                      <!-- Jenkins-->
                 <div class="flex flex-col items-center">
-                  <img src="../Images/logo_skills/jenkins_logo.png" alt="Jenkins" class="h-12 w-12 aspect-square object-contain bg-white rounded p-1 mx-auto shadow" />
+                  <img src="../Images/logo_skills/Jenkins_logo.png" alt="Jenkins" class="h-12 w-12 aspect-square object-contain bg-white rounded p-1 mx-auto shadow" />
                   <span class="text-xs mt-1">Jenkins</span>
                 </div>
                 <!-- VSCode -->
