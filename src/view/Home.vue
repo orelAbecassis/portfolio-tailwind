@@ -23,6 +23,18 @@
         <p class="text-xl text-gray-500 mb-12 max-w-2xl">
           Développeur web passionné par la création d'expériences numériques élégantes et performantes. Toujours prêt à relever de nouveaux défis et à apprendre de nouvelles technologies.
         </p>
+        <!-- BADGES RESEAUX -->
+        <div class="flex items-center gap-4">
+          <a href="https://www.linkedin.com/in/orel-abecassis-488ba7203/" target="_blank" rel="noopener">
+            <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" class="h-10" />
+          </a>
+          <a href="https://discordapp.com/users/775785441198211113" target="_blank" rel="noopener">
+            <img src="https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" class="h-10" />
+          </a>
+           <a href="https://github.com/orelAbecassis" target="_blank" rel="noopener">
+            <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" class="h-10" />
+          </a>
+        </div>
       </div>
     </div>
     <!-- Photo ronde à cheval sur la séparation, centrée sur la coupure -->
@@ -59,7 +71,7 @@
       <div class="flex items-center bg-white/80 rounded-2xl shadow-lg p-8 border border-purple-100 mx-auto">
         <!-- Image projet -->
         <div class="flex-shrink-0">
-          <img src="../Images/" alt="Logo UDON" class="w-32 h-32 rounded-full object-cover border-4 border-purple-200 bg-white shadow" />
+          <img src="../Images/udon-logo.png" alt="Logo UDON" class="w-32 h-32 rounded-full object-cover border-4 border-purple-200 bg-white shadow" />
         </div>
         <!-- Infos projet -->
         <div class="flex-1 flex flex-col items-center justify-center ml-8">
@@ -83,7 +95,7 @@ import photoOrel from '../Images/photo-orel.jpeg'
 const menuOpen = ref(false)
 const roles = [
   'Développeur Full Stack',
-  'Chef de projet',
+  'Cheffe de projet',
   'Freelance Tech'
 ]
 const currentIndex = ref(0)
