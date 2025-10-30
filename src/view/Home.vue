@@ -31,7 +31,7 @@
           <a href="https://discordapp.com/users/775785441198211113" target="_blank" rel="noopener">
             <img src="https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" class="h-10" />
           </a>
-           <a href="https://github.com/orelAbecassis" target="_blank" rel="noopener">
+           <a href="https://www.github.com/orelAbecassis" target="_blank" rel="noopener">
             <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" class="h-10" />
           </a>
         </div>
@@ -62,26 +62,26 @@
           <p class="text-gray-600 text-center mb-4">
             Mel Marciano est un projet de nutritionniste proposant un e-book de recettes de salades fraîches et légères pour le Shabbat, alliant tradition et équilibre alimentaire.
           </p>
-          <router-link to="/projects">
-            <button class="px-6 py-2 bg-purple-600 text-white rounded-full shadow hover:bg-purple-700 transition font-semibold text-base">Voir plus</button>
-          </router-link>
+             <a href="https://mel-marciano.odoo.com/" target="_blank" rel="noopener">
+            <button class="px-6 py-2 bg-purple-600 text-white rounded-full shadow hover:bg-purple-700 transition font-semibold text-base">Visiter le site</button>
+            </a>
         </div>
       </div>
       <!-- Projet 2 : centré -->
       <div class="flex items-center bg-white/80 rounded-2xl shadow-lg p-8 border border-purple-100 mx-auto">
         <!-- Image projet -->
         <div class="flex-shrink-0">
-          <img src="../Images/udon-logo.png" alt="Logo UDON" class="w-32 h-32 rounded-full object-cover border-4 border-purple-200 bg-white shadow" />
+          <img src="../Images/udon-projet.jpeg" alt="Logo UDON" class="w-32 h-32 rounded-full object-cover border-4 border-purple-200 bg-white shadow" />
         </div>
         <!-- Infos projet -->
         <div class="flex-1 flex flex-col items-center justify-center ml-8">
           <h3 class="text-2xl font-bold text-gray-900 mb-2">UDON</h3>
           <p class="text-gray-600 text-center mb-4">
-            Création d'un bot reliant Notion et Discord pour une école.
+            Création d'une solution de communication Discord et Notion pour notre école.
           </p>
-          <router-link to="/projects">
-            <button class="px-6 py-2 bg-purple-600 text-white rounded-full shadow hover:bg-purple-700 transition font-semibold text-base">Voir plus</button>
-          </router-link>
+            <a href="https://app.phenixel.fr/udon" target="_blank" rel="noopener">
+            <button class="px-6 py-2 bg-purple-600 text-white rounded-full shadow hover:bg-purple-700 transition font-semibold text-base">Visiter le site</button>
+            </a>
         </div>
       </div>
     </div>
