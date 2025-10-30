@@ -60,7 +60,7 @@
       </div>
 
       <!-- 💻 Compétences -->
-          <div class="w-full max-w-6xl">
+   <div class="w-full max-w-6xl">
           <h2 class="text-2xl font-semibold text-pink-600 mb-4">Compétences techniques</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             <!-- Langages -->
@@ -115,7 +115,7 @@
                 </div>
                      <!-- Jenkins-->
                 <div class="flex flex-col items-center">
-                  <img src="../Images/logo_skills/Jenkins_logo.png" alt="Jenkins" class="h-12 w-12 aspect-square object-contain bg-white rounded p-1 mx-auto shadow" />
+                  <img src="../Images/logo_skills/jenkins_logo.png" alt="Jenkins" class="h-12 w-12 aspect-square object-contain bg-white rounded p-1 mx-auto shadow" />
                   <span class="text-xs mt-1">Jenkins</span>
                 </div>
                 <!-- VSCode -->
@@ -218,9 +218,8 @@
             </div>
           </div>
 
-
-
-          <h2 class="text-2xl font-semibold text-indigo-600 mb-4">Parcours</h2>
+      <!-- 🧭 Parcours -->
+       <h2 class="text-2xl font-semibold text-indigo-600 mb-4">Parcours</h2>
           <ol class="relative border-l-2 border-blue-300 ml-4">
                   <li class="mb-8 ml-6 p-4 rounded-lg transition-all duration-300 hover:bg-white/50 hover:scale-105 cursor-pointer">
               <span class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-indigo-500 rounded-full ring-8 ring-white text-white">1</span>
@@ -250,29 +249,6 @@
               <time class="block mb-1 text-sm font-normal leading-none text-gray-400">2020 - 2022</time>
             </li>
           </ol>
-        </div>
-
-      <!-- 🎓 Parcours -->
-      <div class="fade w-full max-w-6xl">
-        <h2 class="text-2xl font-semibold text-indigo-600 mb-6">Parcours</h2>
-
-        <ol class="relative border-l-2 border-blue-300 ml-4">
-          <li
-            v-for="(etude, i) in parcours"
-            :key="i"
-            class="mb-8 ml-6 p-4 rounded-lg transition-all duration-300 hover:bg-white/50 hover:scale-105"
-          >
-            <span
-              class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-indigo-500 rounded-full ring-8 ring-white text-white"
-            >
-              {{ i + 1 }}
-            </span>
-
-            <h3 class="font-semibold text-lg text-purple-700">{{ etude.titre }}</h3>
-            <div class="text-gray-600">{{ etude.ecole }}</div>
-            <time class="block text-sm text-gray-400">{{ etude.date }}</time>
-          </li>
-        </ol>
       </div>
     </div>
   </section>

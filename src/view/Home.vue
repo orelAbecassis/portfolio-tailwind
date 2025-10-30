@@ -3,7 +3,8 @@
     <HeroSection />
     <ProjectsSection />
     <AboutSection />
-    <ContactSection /> <!-- ✅ ajout ici -->
+    <ContactSection /> 
+    <FooterSection />
   </div>
 </template>
 
@@ -12,4 +13,5 @@ import HeroSection from '../components/HeroSection.vue'
 import ProjectsSection from '../components/ProjectsSection.vue'
 import AboutSection from '../components/AboutSection.vue'
 import ContactSection from '../components/ContactSection.vue'
+import FooterSection from '../components/FooterSection.vue'
 </script>
